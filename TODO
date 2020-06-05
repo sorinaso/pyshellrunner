@@ -1,0 +1,2 @@
+* Agregar un verbosity que tenga stderr
+* Agregar un context manager para trabajar en un working directory
