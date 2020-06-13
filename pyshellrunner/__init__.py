@@ -35,9 +35,9 @@ class ShellRunner:
     accepted_exit_codes = [0]):
         self.raise_error_on_command_fail=raise_error_on_command_fail
         self.env=env
-        self.dry_run = ('PYSHELL_DRY_RUN' in os.environ) or dry_run
+        self.dry_run = ('PYSHELLRUNNER_DRY_RUN' in os.environ) or dry_run
         self.working_directory = working_directory
-        env_verbosity = os.environ.get('PYSHELL_VERBOSITY', verbosity)
+        env_verbosity = os.environ.get('PYSHELLRUNNER_VERBOSITY', verbosity)
         self.verbosity = int(env_verbosity)
         self.accepted_exit_codes = accepted_exit_codes
 
