@@ -4,8 +4,8 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="pyshellrunner-sorinaso", # Replace with your own username
-    version="0.0.1",
+    name="pyshellrunner-sorinaso",
+    version="0.1.0",
     author="Alejandro Souto",
     author_email="sorinaso@gmail.com",
     description="Simple shell runner with colors and features",

@@ -1,4 +1,16 @@
 import subprocess, os
+from contextlib import contextmanager
+import copy
+
+@contextmanager
+def pyshell_with_values(pyshell, new_params_kwargs = {}):
+    pyshell_copy = copy.deepcopy(pyshell)
+
+    for (k, v) in new_params_kwargs.items():
+        setattr(pyshell_copy, k, v)
+    
+    yield pyshell_copy
+
 
 class ShellRunner:
     class CommandFailed(Exception):
@@ -23,9 +35,9 @@ class ShellRunner:
     accepted_exit_codes = [0]):
         self.raise_error_on_command_fail=raise_error_on_command_fail
         self.env=env
-        self.dry_run = ('BASH_RUNNER_DRY_RUN' in os.environ) or dry_run
+        self.dry_run = ('PYSHELL_DRY_RUN' in os.environ) or dry_run
         self.working_directory = working_directory
-        env_verbosity = os.environ.get('BASH_RUNNER_VERBOSITY', verbosity)
+        env_verbosity = os.environ.get('PYSHELL_VERBOSITY', verbosity)
         self.verbosity = int(env_verbosity)
         self.accepted_exit_codes = accepted_exit_codes
 
@@ -58,6 +70,9 @@ class ShellRunner:
 
             if params['verbosity'] > 1:
                 print(f"stdout:\n\n{ret.stdout}")
+
+            if params['verbosity'] > 2:
+                print(f"stderr:\n\n{ret.stderr}")
 
             return ret
         else:
