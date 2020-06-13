@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyshellrunner-sorinaso",
-    version="0.2.0",
+    version="0.3.0",
     author="Alejandro Souto",
     author_email="sorinaso@gmail.com",
     description="Simple shell runner with colors and features",
